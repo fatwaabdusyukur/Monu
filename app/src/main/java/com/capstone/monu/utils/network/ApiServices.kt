@@ -7,9 +7,10 @@ import retrofit2.http.Query
 
 interface ApiServices {
 
-    @GET("v2/parser")
-    fun getRandomFood(@Query("app_id")  appId : String,
-                      @Query("app_key") appKey : String,
-                      @Query("ingr") ingredient : String
-                      ) : Call<FoodResponse>
+    @GET("recipes/v2")
+    fun getRandomFood(@Query("type") type : String,
+                      @Query("q")  ingredient : String,
+                      @Query("app_id") appId : String,
+                      @Query("app_key") appKey : String
+    ) : Call<FoodResponse>
 }

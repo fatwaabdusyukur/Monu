@@ -27,7 +27,7 @@ class RemoteDataSource {
     }
 
     fun getFoods() : LiveData<ApiResponse<List<FoodList>>> {
-        val client = ApiConfig.getApiServices().getRandomFood(API_ID, API_KEY, RANDOM_ING)
+        val client = ApiConfig.getApiServices().getRandomFood(type = "public", ingredient = RANDOM_ING, appId = API_ID, appKey = API_KEY)
         val foods = MutableLiveData<ApiResponse<List<FoodList>>>()
         client.enqueue(object : Callback<FoodResponse> {
             override fun onResponse(call: Call<FoodResponse>, response: Response<FoodResponse>) {

@@ -6,6 +6,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.capstone.monu.R
 import com.capstone.monu.data.local.entity.FoodEntity
 import com.capstone.monu.databinding.ItemsFoodBinding
 
@@ -14,8 +15,10 @@ class FoodAdapter : PagedListAdapter<FoodEntity, FoodAdapter.FoodViewHolder>(DIF
     inner class FoodViewHolder(private val binding : ItemsFoodBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(food : FoodEntity) {
             binding.itemFoodLabel.text = food.label
+            val calories = itemView.context.getString(R.string.food_calories, food.calories.toString())
+            binding.itemCalories.text = calories
             Glide.with(itemView.context)
-                .load(food.image)
+                .load((food.image ?: itemView.context.resources.getDrawable(R.drawable.image_not_found)))
                 .into(binding.itemFoodImg)
         }
     }

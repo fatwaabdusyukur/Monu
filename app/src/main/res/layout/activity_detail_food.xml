@@ -6,4 +6,154 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailFoodActivity">
 
+    <TextView
+        android:id="@+id/tv_detail_food_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="65dp"
+        android:fontFamily="@font/dongle"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/food" />
+
+    <ImageView
+        android:id="@+id/img_detail_food"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_food_name"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_flame"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_food"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_calories" />
+
+    <TextView
+        android:id="@+id/tv_desc_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/calories"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_food"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_food_name" />
+
+    <TextView
+        android:id="@+id/tv_detail_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_food"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_calories"
+        tools:text="@string/nutrients" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/nutrient_fat"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_food"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_fat" />
+
+    <TextView
+        android:id="@+id/tv_desc_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/fat"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_food"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_calories" />
+
+    <TextView
+        android:id="@+id/tv_detail_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_food"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_fat"
+        tools:text="@string/nutrients" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/nutrient_protein"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_calories"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_protein" />
+
+    <TextView
+        android:id="@+id/tv_desc_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/protein"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_calories"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_food_name" />
+
+    <TextView
+        android:id="@+id/tv_detail_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_calories"
+        tools:layout_editor_absoluteY="129dp"
+        tools:text="@string/nutrients" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/nutrient_carb"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_fat"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_carbo" />
+
+    <TextView
+        android:id="@+id/tv_desc_carbo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/carbo"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_fat"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_protein" />
+
+    <TextView
+        android:id="@+id/tv_detail_carbo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_fat"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_carbo"
+        tools:text="@string/nutrients" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,18 +3,20 @@ package com.capstone.monu.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class Nutrients(
-    @SerializedName("ENERC_KCAL")
-    val calories : Float,
+    @SerializedName("FAT")
+    val fat : NutrientsDetail,
 
     @SerializedName("PROCNT")
-    val protein : Float,
-
-    @SerializedName("FAT")
-    val fat : String,
+    val protein : NutrientsDetail,
 
     @SerializedName("CHOCDF")
-    val carbohydrate  : Float,
+    val carbohydrate : NutrientsDetail
+)
 
-    @SerializedName("FIBTG")
-    val fiber : Float
+data class NutrientsDetail(
+    @SerializedName("label")
+    val label : String,
+
+    @SerializedName("quantity")
+    val quantity : Double,
 )

@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import com.capstone.monu.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.databinding.FragmentFoodBinding
 import com.capstone.monu.utils.ViewModelFactory
+import com.capstone.monu.utils.vo.Status
 
 class FoodFragment : Fragment() {
 
@@ -32,10 +33,31 @@ class FoodFragment : Fragment() {
         viewModel.getFoods().observe(viewLifecycleOwner) {
             with(binding.rvFood) {
                 setHasFixedSize(true)
-                layoutManager = GridLayoutManager(context, 2)
+                layoutManager = LinearLayoutManager(context)
                 this.adapter = adapter
             }
-            adapter.submitList(it.data)
+            if (it != null) {
+                when(it.status) {
+                    Status.LOADING -> showLoading(true)
+                    Status.SUCCESS -> {
+                        showLoading(false)
+                        adapter.submitList(it.data)
+                        adapter.notifyDataSetChanged()
+                    }
+                    Status.ERROR -> {
+                        showLoading(false)
+                        Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showLoading(isLoading : Boolean) {
+        binding.apply {
+            loading.visibility = if (isLoading) View.VISIBLE else View.GONE
+            textBrandFood.visibility = if (isLoading) View.GONE else View.VISIBLE
+            foodSearch.visibility = if (isLoading) View.GONE else View.VISIBLE
         }
     }
 

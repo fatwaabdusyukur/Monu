@@ -24,8 +24,8 @@ interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDailyFood(dailyFood : DailyEntity)
 
-    @Update
-    suspend fun changeDailyFood(dailyFood: DailyEntity)
+    @Query("UPDATE daily_food SET food = food || '-' || :foodID WHERE id = :dailyID")
+    suspend fun updateDailyFood(foodID : String, dailyID : Int)
 
     @Query("SELECT * FROM daily_food")
     fun getAllDailyFood() : DataSource.Factory<Int, DailyEntity>

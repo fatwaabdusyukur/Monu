@@ -15,9 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "BASE_URL", "\"https://api.edamam.com/api/food-database/\""
-        buildConfigField "String", "API_KEY", "\"98d5917f1c68d1ea7d7b0be5cb1884c4\""
-        buildConfigField "String", "API_ID", "\"ec470660\""
+        buildConfigField "String", "BASE_URL", "\"https://api.edamam.com/api/\""
+        buildConfigField "String", "API_KEY", "\"640ed83f9befa682a26a861256ba58a6\""
+        buildConfigField "String", "API_ID", "\"34ed9550\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +53,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'

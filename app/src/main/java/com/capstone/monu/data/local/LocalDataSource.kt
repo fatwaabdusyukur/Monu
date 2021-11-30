@@ -28,5 +28,5 @@ class LocalDataSource(private val foodDao: FoodDao) {
 
     suspend fun addDailyFood(daily : DailyEntity) = foodDao.insertDailyFood(daily)
 
-    suspend fun updateDailyFood(daily: DailyEntity) = foodDao.changeDailyFood(daily)
+    suspend fun updateDailyFood(foodID : String, dailyID : Int) = foodDao.updateDailyFood(foodID, dailyID)
 }

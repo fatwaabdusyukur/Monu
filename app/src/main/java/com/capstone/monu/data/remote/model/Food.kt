@@ -3,22 +3,28 @@ package com.capstone.monu.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class FoodResponse(
-    @SerializedName("hints")
+    @SerializedName("hits")
     val hints : List<FoodList>
 )
 
 data class FoodList(
-    @SerializedName("food")
+    @SerializedName("recipe")
     val food : Food
 )
 
 data class Food(
-    @SerializedName("foodId")
+    @SerializedName("uri")
     val id : String,
     @SerializedName("label")
     val label : String,
     @SerializedName("image")
     val image : String,
-    @SerializedName("nutrients")
+    @SerializedName("calories")
+    val calories : Double,
+    @SerializedName("ingredientLines")
+    val ingredientLines : List<String>,
+    @SerializedName("ingredients")
+    val ingredient : List<Ingredient>,
+    @SerializedName("totalNutrients")
     val nutrients : Nutrients
 )

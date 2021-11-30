@@ -11,11 +11,7 @@ data class DailyEntity(
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    val id : Int,
-
-    @NonNull
-    @ColumnInfo(name = "day")
-    val day : String,
+    val id : Int = 0,
 
     @NonNull
     @ColumnInfo(name = "date")

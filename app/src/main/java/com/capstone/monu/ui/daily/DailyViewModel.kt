@@ -37,6 +37,7 @@ class DailyViewModel(private val monuRepository: MonuRepository, context: Contex
         val data = DailyEntity(
             date = currentDate,
             food = "",
+            eatTime = "",
             targetCalories = targetCalories,
             calories = 0
         )

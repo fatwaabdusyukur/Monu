@@ -19,7 +19,11 @@ data class DailyEntity(
 
     @NonNull
     @ColumnInfo(name = "food")
-    val food : String,
+    var food : String,
+
+    @NonNull
+    @ColumnInfo(name = "eat_time")
+    var eatTime : String,
 
     @NonNull
     @ColumnInfo(name = "target_calories")
@@ -27,5 +31,5 @@ data class DailyEntity(
 
     @NonNull
     @ColumnInfo(name = "calories")
-    val calories : Int
+    var calories : Int
 )

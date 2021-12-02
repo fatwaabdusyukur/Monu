@@ -24,9 +24,11 @@ class LocalDataSource(private val foodDao: FoodDao) {
 
     fun obtainDailyById(id : Int) : LiveData<DailyEntity> = foodDao.getDailyFood(id)
 
+    fun obtainDailyByDate(date : String) : LiveData<DailyEntity> = foodDao.getDataDailyByDate(date)
+
     fun addFoods(foods : FoodEntity) = foodDao.insertFood(foods)
 
     suspend fun addDailyFood(daily : DailyEntity) = foodDao.insertDailyFood(daily)
 
-    suspend fun updateDailyFood(foodID : String, dailyID : Int) = foodDao.updateDailyFood(foodID, dailyID)
+    suspend fun updateDailyFood(daily: DailyEntity) = foodDao.updateDailyFood(daily)
 }

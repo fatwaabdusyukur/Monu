@@ -54,7 +54,7 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
                     val id = item.food.id.split("_").toTypedArray()
 
                     item.food.ingredient.forEach {
-                        ingredientImage.append(it.image).append("-")
+                        ingredientImage.append(it.image).append(",")
                     }
 
                     item.food.ingredientLines.forEach {
@@ -80,6 +80,10 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
         }.asLiveData()
     }
 
+    override fun getFood(id: String): LiveData<FoodEntity> {
+        return localDataSource.obtainFood(id)
+    }
+
     override fun addDailySchedule(dailyEntity: DailyEntity, scope : CoroutineScope) {
         scope.launch(Dispatchers.IO) {
             localDataSource.addDailyFood(dailyEntity)
@@ -98,6 +102,31 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
 
     override fun getDailySchedule(id: Int): LiveData<DailyEntity> {
         return localDataSource.obtainDailyById(id)
+    }
+
+    override fun getDailyByDate(date: String) : LiveData<DailyEntity> {
+        return localDataSource.obtainDailyByDate(date)
+    }
+
+    override fun setDailyMeal(
+        daily: DailyEntity,
+        food: String,
+        eatTime: String,
+        calories: Int,
+        scope: CoroutineScope
+    ) {
+        if (daily.food == "" && daily.eatTime == "" && daily.calories == 0) {
+            daily.food = food
+            daily.eatTime = eatTime
+            daily.calories = calories
+        } else {
+            daily.food.plus("-").plus(food)
+            daily.eatTime.plus("-").plus(eatTime)
+            daily.calories = daily.calories + calories
+        }
+        scope.launch(Dispatchers.IO) {
+            localDataSource.updateDailyFood(daily)
+        }
     }
 
 

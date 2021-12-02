@@ -1,5 +1,6 @@
 package com.capstone.monu.ui.food
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.databinding.FragmentFoodBinding
+import com.capstone.monu.ui.detail.DetailFoodActivity
+import com.capstone.monu.utils.FOOD_ID
 import com.capstone.monu.utils.ViewModelFactory
 import com.capstone.monu.utils.vo.Status
 
@@ -29,7 +32,11 @@ class FoodFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel = ViewModelProvider(this, factory)[FoodViewModel::class.java]
-        val adapter = FoodAdapter()
+        val adapter = FoodAdapter { food ->
+            val i = Intent(context, DetailFoodActivity::class.java)
+            i.putExtra(FOOD_ID, food.id)
+            startActivity(i)
+        }
         viewModel.getFoods().observe(viewLifecycleOwner) {
             with(binding.rvFood) {
                 setHasFixedSize(true)

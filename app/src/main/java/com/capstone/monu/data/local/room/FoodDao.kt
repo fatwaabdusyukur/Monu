@@ -18,14 +18,17 @@ interface FoodDao {
     @Query("SELECT * FROM food WHERE id IN (:foods)")
     fun getDataDailyFood(foods : List<String>) : DataSource.Factory<Int, FoodEntity>
 
+    @Query("SELECT * FROM daily_food WHERE date = :date")
+    fun getDataDailyByDate(date : String) : LiveData<DailyEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFood(vararg food : FoodEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDailyFood(dailyFood : DailyEntity)
 
-    @Query("UPDATE daily_food SET food = food || '-' || :foodID WHERE id = :dailyID")
-    suspend fun updateDailyFood(foodID : String, dailyID : Int)
+    @Update
+    suspend fun updateDailyFood(daily: DailyEntity)
 
     @Query("SELECT * FROM daily_food")
     fun getAllDailyFood() : DataSource.Factory<Int, DailyEntity>

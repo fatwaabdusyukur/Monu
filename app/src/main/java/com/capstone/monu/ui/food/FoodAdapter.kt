@@ -9,17 +9,24 @@ import com.bumptech.glide.Glide
 import com.capstone.monu.R
 import com.capstone.monu.data.local.entity.FoodEntity
 import com.capstone.monu.databinding.ItemsFoodBinding
+import com.capstone.monu.utils.MonuConverter
 
-class FoodAdapter : PagedListAdapter<FoodEntity, FoodAdapter.FoodViewHolder>(DIFF_CALLBACK) {
+class FoodAdapter(
+    private val onClick : (FoodEntity) -> Unit
+) : PagedListAdapter<FoodEntity, FoodAdapter.FoodViewHolder>(DIFF_CALLBACK) {
 
     inner class FoodViewHolder(private val binding : ItemsFoodBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(food : FoodEntity) {
             binding.itemFoodLabel.text = food.label
-            val calories = itemView.context.getString(R.string.food_calories, food.calories.toString())
+            val calories = itemView.context.getString(R.string.food_calories, MonuConverter.doubleToFloor(food.calories).toString())
             binding.itemCalories.text = calories
             Glide.with(itemView.context)
                 .load((food.image ?: itemView.context.resources.getDrawable(R.drawable.image_not_found)))
                 .into(binding.itemFoodImg)
+            itemView.setOnClickListener {
+                onClick(food)
+            }
+
         }
     }
 

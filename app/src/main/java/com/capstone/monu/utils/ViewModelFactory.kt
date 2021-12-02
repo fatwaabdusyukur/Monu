@@ -3,6 +3,7 @@ package com.capstone.monu.utils
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.capstone.monu.ui.detail.DetailViewModel
 import com.capstone.monu.ui.food.FoodViewModel
 import com.capstone.monu.utils.di.Injection
 import com.capstone.monu.utils.repository.MonuRepository
@@ -22,6 +23,7 @@ class ViewModelFactory private constructor(private val monuRepository: MonuRepos
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(FoodViewModel::class.java) -> FoodViewModel(monuRepository) as T
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(monuRepository) as T
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
     }

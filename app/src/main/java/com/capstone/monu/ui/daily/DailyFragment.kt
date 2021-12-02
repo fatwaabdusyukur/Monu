@@ -1,13 +1,23 @@
 package com.capstone.monu.ui.daily
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.capstone.monu.R
 import com.capstone.monu.databinding.FragmentDailyBinding
+import com.capstone.monu.utils.PREF_DAILY_KEY
+import com.capstone.monu.utils.PREF_DATE_KEY
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.textfield.TextInputEditText
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DailyFragment : Fragment() {
 
@@ -26,6 +36,7 @@ class DailyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = DailyAdapter()
         val factory = DailyViewModelFactory.createFactory(requireActivity())
+        val sharedPref = requireActivity().getSharedPreferences(PREF_DAILY_KEY, Context.MODE_PRIVATE)
         val viewModel = ViewModelProvider(this, factory)[DailyViewModel::class.java]
 
         with(binding.rvDaily) {
@@ -34,8 +45,28 @@ class DailyFragment : Fragment() {
         }
 
         binding.fabAdd.setOnClickListener {
-            val fragment = AddDailyDialogFragment()
-            fragment.show(childFragmentManager, AddDailyDialogFragment::class.java.simpleName)
+            val dialog = BottomSheetDialog(requireActivity())
+            dialog.setContentView(R.layout.dialog_add_daily)
+            val editText = dialog.findViewById<TextInputEditText>(R.id.add_target_calories)
+            val btnAdd = dialog.findViewById<Button>(R.id.btn_add_daily_schedule)
+            val btnCancel = dialog.findViewById<Button>(R.id.btn_dialog_cancel)
+            btnAdd?.setOnClickListener {
+                val targetCalories = editText?.text.toString()
+                viewModel.addDailyMeals(targetCalories = targetCalories.toInt())
+                sharedPref.edit().putString(
+                    PREF_DATE_KEY, SimpleDateFormat("EEE, d MMM yyy", Locale.getDefault()).format(
+                        Calendar.getInstance().time)).apply()
+                dialog.dismiss()
+                findNavController().run {
+                    popBackStack()
+                    navigate(R.id.navigation_daily)
+                }
+            }
+
+            btnCancel?.setOnClickListener {
+                dialog.cancel()
+            }
+            dialog.show()
         }
 
         viewModel.getAllDailySchedule().observe(viewLifecycleOwner) {

@@ -12,7 +12,6 @@ import com.capstone.monu.utils.vo.Resource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.StringBuilder
 
 class MonuRepository private constructor(private val localDataSource: LocalDataSource,
                                         private val remoteDataSource: RemoteDataSource,
@@ -48,18 +47,8 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
                 remoteDataSource.getFoods()
 
             override fun saveCallResult(data: List<FoodList>) {
-                val ingredientLines = StringBuilder().append("")
-                val ingredientImage = StringBuilder().append("")
                 for (item in data) {
                     val id = item.food.id.split("_").toTypedArray()
-
-                    item.food.ingredient.forEach {
-                        ingredientImage.append(it.image).append(",")
-                    }
-
-                    item.food.ingredientLines.forEach {
-                        ingredientLines.append(it).append("-")
-                    }
 
                    localDataSource.addFoods(
                        FoodEntity(
@@ -67,8 +56,6 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
                            label = item.food.label,
                            image = item.food.image,
                            calories = item.food.calories,
-                           ingredientLines = ingredientLines.toString(),
-                           ingredientImage = ingredientImage.toString(),
                            fat = item.food.nutrients.fat.quantity,
                            carbohydrate = item.food.nutrients.carbohydrate.quantity,
                            protein = item.food.nutrients.protein.quantity

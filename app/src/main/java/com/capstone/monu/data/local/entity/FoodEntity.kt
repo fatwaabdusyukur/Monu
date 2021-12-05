@@ -19,12 +19,6 @@ data class FoodEntity(
     @ColumnInfo(name = "calories")
     val calories : Double,
 
-    @ColumnInfo(name = "ingredientLines")
-    val ingredientLines : String,
-
-    @ColumnInfo(name = "ingredientImage")
-    val ingredientImage : String,
-
     @ColumnInfo(name = "fat")
     val fat : Double,
 

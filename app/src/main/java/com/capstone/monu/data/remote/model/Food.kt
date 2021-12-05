@@ -21,8 +21,6 @@ data class Food(
     val image : String,
     @SerializedName("calories")
     val calories : Double,
-    @SerializedName("ingredientLines")
-    val ingredientLines : List<String>,
     @SerializedName("ingredients")
     val ingredient : List<Ingredient>,
     @SerializedName("totalNutrients")

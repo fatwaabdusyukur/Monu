@@ -5,7 +5,7 @@
     <string name="daily_meals">Daily Meals</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_food">Search food...</string>
+    <string name="search_food">Search food</string>
     <string name="food_text_brand">Want to eat healthy food?</string>
     <string name="food_calories">%s Calories</string>
     <string name="add_plan">Add your plan meals</string>
@@ -19,10 +19,14 @@
     <string name="nutrients">%sg</string>
     <string name="fat">Fat</string>
     <string name="protein">Protein</string>
-    <string name="carbo">Carbo</string>
+    <string name="carbs">Carbs</string>
     <string name="ingredient_lines">Detail Ingredients</string>
     <string name="ingredients">Ingredients</string>
     <string name="add_to_daily_meal">Add to Daily Meal</string>
     <string name="add_food">Add Food</string>
-    <string name="eat_time">Eat Time</string>
+    <string name="eat_time">Eat this food at?</string>
+    <string name="hour">Hour</string>
+    <string name="minute">Minute</string>
+    <string name="food_image_desc">Food Image</string>
+    <string name="detail_calories">%s Calories</string>
 </resources>

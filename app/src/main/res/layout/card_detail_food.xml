@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card">
+
+    <TextView
+        android:id="@+id/tv_detail_food_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="75dp"
+        android:fontFamily="@font/dongle"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/food" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/foodNutrientDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/protein"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_food_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_food_name" />
+
+    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+        android:id="@+id/bar_protein"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:rcBackgroundColor="@color/salmon"
+        app:rcBackgroundPadding="2dp"
+        app:rcIconBackgroundColor="@color/colorAccent"
+        app:rcIconPadding="5dp"
+        app:rcIconSize="30dp"
+        app:rcIconSrc="@drawable/nutrient_protein"
+        app:rcProgress="50"
+        app:rcProgressColor="@color/colorPrimary"
+        app:rcRadius="5dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/foodNutrientDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fat"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_food_name"
+        app:layout_constraintTop_toBottomOf="@+id/bar_protein" />
+
+    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+        android:id="@+id/bar_fat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:rcBackgroundColor="@color/salmon"
+        app:rcBackgroundPadding="2dp"
+        app:rcIconBackgroundColor="@color/colorAccent"
+        app:rcIconPadding="5dp"
+        app:rcIconSize="30dp"
+        app:rcIconSrc="@drawable/nutrient_fat"
+        app:rcProgress="50"
+        app:rcProgressColor="@color/colorPrimary"
+        app:rcRadius="5dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/foodNutrientDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/carbs"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_food_name"
+        app:layout_constraintTop_toBottomOf="@+id/bar_fat" />
+
+
+    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+        android:id="@+id/bar_carbs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:rcBackgroundColor="@color/salmon"
+        app:rcBackgroundPadding="2dp"
+        app:rcIconBackgroundColor="@color/colorAccent"
+        app:rcIconPadding="5dp"
+        app:rcIconSize="30dp"
+        app:rcIconSrc="@drawable/nutrient_fat"
+        app:rcProgress="50"
+        app:rcProgressColor="@color/colorPrimary"
+        app:rcRadius="5dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_flame"
+        app:layout_constraintStart_toStartOf="@+id/bar_carbs"
+        app:layout_constraintTop_toBottomOf="@+id/bar_carbs" />
+
+    <TextView
+        android:id="@+id/detail_calories"
+        style="@style/fontNutrients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="23dp"
+        app:layout_constraintStart_toStartOf="@+id/bar_carbs"
+        app:layout_constraintTop_toBottomOf="@+id/bar_carbs"
+        tools:text="@string/detail_calories" />
+
+    <Button
+        android:id="@+id/btn_add_food"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_btn_add"
+        android:text="@string/add_food"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_calories" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -72,6 +72,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 
+    // Custom View
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+
     // paging
     implementation 'androidx.paging:paging-runtime-ktx:2.1.2'
 

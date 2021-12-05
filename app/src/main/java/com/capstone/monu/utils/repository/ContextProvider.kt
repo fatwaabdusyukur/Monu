@@ -1,3 +1,5 @@
+@file:Suppress("PropertyName")
+
 package com.capstone.monu.utils.repository
 
 import kotlinx.coroutines.Dispatchers

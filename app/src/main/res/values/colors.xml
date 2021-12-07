@@ -10,4 +10,7 @@
     <color name="colorSecondary">#4F97A3</color>
     <color name="colorSecondaryVariant">#FF018786</color>
 
+    <color name="crimson">#FD541E</color>
+    <color name="crimson_light">#F87951</color>
+
 </resources>

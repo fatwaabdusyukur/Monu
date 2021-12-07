@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.capstone.monu.databinding.FragmentFoodBinding
 import com.capstone.monu.ui.detail.DetailFoodActivity
 import com.capstone.monu.utils.FOOD_ID
 import com.capstone.monu.utils.ViewModelFactory
+import com.capstone.monu.utils.adapter.DishTypeAdapter
 import com.capstone.monu.utils.vo.Status
 
 class FoodFragment : Fragment() {
@@ -37,7 +39,16 @@ class FoodFragment : Fragment() {
             i.putExtra(FOOD_ID, food.id)
             startActivity(i)
         }
-        viewModel.getFoods().observe(viewLifecycleOwner) {
+
+        with(binding.rvDish) {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            this.adapter = DishTypeAdapter {
+                viewModel.setDish(it)
+            }
+        }
+
+        viewModel.getFoods()?.observe(viewLifecycleOwner) {
             with(binding.rvFood) {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)

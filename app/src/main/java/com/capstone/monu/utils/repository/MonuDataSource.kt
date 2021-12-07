@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 
 interface MonuDataSource {
 
-    fun getFoods() : LiveData<Resource<PagedList<FoodEntity>>>
+    fun getFoods(food : String, dish : String? = null) : LiveData<Resource<PagedList<FoodEntity>>>
 
     fun getFood(id : String) : LiveData<FoodEntity>
 

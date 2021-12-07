@@ -48,7 +48,6 @@ class DetailFoodActivity : AppCompatActivity(), TimePickerFragment.DialogTimeLis
             barCarbs.max = if (food.carbohydrate < 10) 10F else 100F
             barFat.max = if (food.fat < 10) 10F else 100F
 
-
             barProtein.progress = food.protein.toFloat()
             barFat.progress = food.fat.toFloat()
             barCarbs.progress = food.carbohydrate.toFloat()

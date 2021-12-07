@@ -28,7 +28,7 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
             }
     }
 
-    override fun getFoods(): LiveData<Resource<PagedList<FoodEntity>>> {
+    override fun getFoods(food: String, dish: String?): LiveData<Resource<PagedList<FoodEntity>>> {
         return object : NetworkBoundResource<PagedList<FoodEntity>, List<FoodList>>(contextProviders) {
             override fun loadFromDb(): LiveData<PagedList<FoodEntity>> {
                 val config = PagedList.Config.Builder()
@@ -44,7 +44,7 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<FoodList>>> =
-                remoteDataSource.getFoods()
+                if (dish != null) remoteDataSource.getFoods(food, dish) else remoteDataSource.getFoods(food)
 
             override fun saveCallResult(data: List<FoodList>) {
                 for (item in data) {

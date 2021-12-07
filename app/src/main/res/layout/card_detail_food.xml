@@ -78,12 +78,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         app:rcBackgroundColor="@color/salmon"
         app:rcBackgroundPadding="2dp"
-        app:rcIconBackgroundColor="@color/colorAccent"
+        app:rcIconBackgroundColor="@color/crimson_light"
         app:rcIconPadding="5dp"
         app:rcIconSize="30dp"
         app:rcIconSrc="@drawable/nutrient_fat"
         app:rcProgress="50"
-        app:rcProgressColor="@color/colorPrimary"
+        app:rcProgressColor="@color/crimson"
         app:rcRadius="5dp" />
 
     <TextView
@@ -111,12 +111,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:rcBackgroundColor="@color/salmon"
         app:rcBackgroundPadding="2dp"
-        app:rcIconBackgroundColor="@color/colorAccent"
+        app:rcIconBackgroundColor="@color/colorSecondary"
         app:rcIconPadding="5dp"
         app:rcIconSize="30dp"
         app:rcIconSrc="@drawable/nutrient_fat"
         app:rcProgress="50"
-        app:rcProgressColor="@color/colorPrimary"
+        app:rcProgressColor="@color/colorSecondaryVariant"
         app:rcRadius="5dp" />
 
     <ImageView

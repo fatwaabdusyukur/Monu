@@ -29,4 +29,19 @@
     <string name="minute">Minute</string>
     <string name="food_image_desc">Food Image</string>
     <string name="detail_calories">%s Calories</string>
+    <string name="dish_type" />
+
+    <string-array name="dish_type">
+        <item>Alcohol-cocktail</item>
+        <item>Biscuits and cookies</item>
+        <item>Bread</item>
+        <item>Cereals</item>
+        <item>Starter</item>
+        <item>Drinks</item>
+        <item>Desserts</item>
+        <item>Soup</item>
+        <item>Main course</item>
+        <item>Salad</item>
+    </string-array>
+
 </resources>

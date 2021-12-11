@@ -14,7 +14,7 @@ class LocalDataSource(private val foodDao: FoodDao) {
             INSTANCE ?: LocalDataSource(foodDao)
     }
 
-    fun obtainFoods() : DataSource.Factory<Int, FoodEntity> = foodDao.getAllDataFood()
+    fun obtainFoods(keyword : String) : DataSource.Factory<Int, FoodEntity> = foodDao.getAllDataFood(keyword)
 
     fun obtainFood(id : String) : LiveData<FoodEntity> = foodDao.getDataFood(id)
 

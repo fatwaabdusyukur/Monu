@@ -59,7 +59,7 @@ class DetailFoodActivity : AppCompatActivity(), TimePickerFragment.DialogTimeLis
     }
 
     private fun showAddDialog(food: FoodEntity) {
-        val pref = this.getSharedPreferences(PREF_DAILY_KEY, Context.MODE_PRIVATE)
+        val pref = applicationContext.getSharedPreferences(PREF_DAILY_KEY, Context.MODE_PRIVATE)
         val date = pref.getString(PREF_DATE_KEY, "")
         val dialog = BottomSheetDialog(this)
         dialog.setContentView(R.layout.dialog_add_food)
@@ -73,12 +73,13 @@ class DetailFoodActivity : AppCompatActivity(), TimePickerFragment.DialogTimeLis
         }
 
         dialog.findViewById<Button>(R.id.btn_add_food)?.setOnClickListener {
-            if (date != null) viewModel.addDailyMeal(
-                food = food.id,
-                eatTime = eatTime.text.toString(),
-                date = date,
-                calories = food.calories.toInt()
-            )
+            date?.let {
+                viewModel.addDailyMeal(
+                    food = food,
+                    eatTime = eatTime.text.toString(),
+                    date = it,
+                )
+            }
             dialog.dismiss()
         }
 

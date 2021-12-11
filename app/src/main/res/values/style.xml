@@ -17,6 +17,12 @@
         <item name="bottomSheetDialogTheme">@style/dialogAddStyle</item>
     </style>
 
+    <style name="DialogTheme" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
     <style name="dialogAddStyle" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="colorSurface">@color/salmon</item>
         <item name="bottomSheetStyle">@style/shapeDialogApp</item>

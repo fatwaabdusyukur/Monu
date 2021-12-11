@@ -1,15 +1,15 @@
 package com.capstone.monu.ui.food
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
+import androidx.paging.PagedList
+import com.capstone.monu.data.local.entity.FoodEntity
 import com.capstone.monu.utils.RANDOM_ING
 import com.capstone.monu.utils.repository.MonuRepository
+import com.capstone.monu.utils.vo.Resource
 
 class FoodViewModel(private val monuRepository: MonuRepository) : ViewModel() {
 
     private val _food = MutableLiveData<String>()
-    private val _dish = MutableLiveData<String>()
 
     init {
         _food.value = RANDOM_ING
@@ -19,11 +19,9 @@ class FoodViewModel(private val monuRepository: MonuRepository) : ViewModel() {
         _food.value = food
     }
 
-    fun setDish(dish : String) {
-        _dish.value = dish
+    val food : LiveData<Resource<PagedList<FoodEntity>>> = _food.switchMap {
+        monuRepository.getFoods(it)
     }
-
-    fun getFoods() = if (_dish.value != null) _dish.switchMap { monuRepository.getFoods(_food.value!!, it) } else _food.value.let { monuRepository.getFoods(it!!) }
 
 }
 

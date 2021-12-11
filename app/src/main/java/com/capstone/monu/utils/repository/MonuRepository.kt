@@ -28,7 +28,7 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
             }
     }
 
-    override fun getFoods(food: String, dish: String?): LiveData<Resource<PagedList<FoodEntity>>> {
+    override fun getFoods(food: String): LiveData<Resource<PagedList<FoodEntity>>> {
         return object : NetworkBoundResource<PagedList<FoodEntity>, List<FoodList>>(contextProviders) {
             override fun loadFromDb(): LiveData<PagedList<FoodEntity>> {
                 val config = PagedList.Config.Builder()
@@ -37,14 +37,14 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
                     .setPageSize(4)
                     .build()
 
-                return LivePagedListBuilder(localDataSource.obtainFoods(), config).build()
+                return LivePagedListBuilder(localDataSource.obtainFoods(food), config).build()
             }
 
             override fun shouldFetch(data: PagedList<FoodEntity>?): Boolean =
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<FoodList>>> =
-                if (dish != null) remoteDataSource.getFoods(food, dish) else remoteDataSource.getFoods(food)
+                remoteDataSource.getFoods(food)
 
             override fun saveCallResult(data: List<FoodList>) {
                 for (item in data) {
@@ -91,25 +91,32 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
         return localDataSource.obtainDailyById(id)
     }
 
-    override fun getDailyByDate(date: String) : LiveData<DailyEntity> {
-        return localDataSource.obtainDailyByDate(date)
-    }
+    override fun getDailyByDate(date: String): LiveData<DailyEntity> =
+        localDataSource.obtainDailyByDate(date)
 
     override fun setDailyMeal(
         daily: DailyEntity,
-        food: String,
+        food: FoodEntity,
         eatTime: String,
-        calories: Int,
         scope: CoroutineScope
     ) {
-        if (daily.food == "" && daily.eatTime == "" && daily.calories == 0) {
-            daily.food = food
+
+
+
+        if (daily.food == "") {
+            daily.food = food.id
             daily.eatTime = eatTime
-            daily.calories = calories
+            daily.calories = food.calories.toFloat()
+            daily.protein = food.protein.toFloat()
+            daily.fat = food.fat.toFloat()
+            daily.carbs = food.carbohydrate.toFloat()
         } else {
             daily.food.plus("-").plus(food)
             daily.eatTime.plus("-").plus(eatTime)
-            daily.calories = daily.calories + calories
+            daily.calories = (daily.calories + food.calories).toFloat()
+            daily.protein = (daily.protein + food.protein).toFloat()
+            daily.fat = (daily.fat + food.fat).toFloat()
+            daily.carbs = (daily.carbs + food.carbohydrate).toFloat()
         }
         scope.launch(Dispatchers.IO) {
             localDataSource.updateDailyFood(daily)

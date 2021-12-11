@@ -6,7 +6,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_food">Search food</string>
-    <string name="food_text_brand">Want to eat healthy food?</string>
+    <string name="food_text_brand">Find Good Food \nAround You</string>
     <string name="food_calories">%s Calories</string>
     <string name="add_plan">Add your plan meals</string>
     <string name="target_calories">Set your target calories?</string>
@@ -30,18 +30,10 @@
     <string name="food_image_desc">Food Image</string>
     <string name="detail_calories">%s Calories</string>
     <string name="dish_type" />
-
-    <string-array name="dish_type">
-        <item>Alcohol-cocktail</item>
-        <item>Biscuits and cookies</item>
-        <item>Bread</item>
-        <item>Cereals</item>
-        <item>Starter</item>
-        <item>Drinks</item>
-        <item>Desserts</item>
-        <item>Soup</item>
-        <item>Main course</item>
-        <item>Salad</item>
-    </string-array>
+    <string name="calories_value">%s/%s Calories</string>
+    <string name="your_calories">Your Calories</string>
+    <string name="daily_nut">%s/%s Gram</string>
+    <string name="nutrients_desc">Nutrients</string>
+    <string name="food_fragment_banner">Food Fragment Banner</string>
 
 </resources>

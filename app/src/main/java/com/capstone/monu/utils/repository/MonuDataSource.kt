@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 
 interface MonuDataSource {
 
-    fun getFoods(food : String, dish : String? = null) : LiveData<Resource<PagedList<FoodEntity>>>
+    fun getFoods(food : String) : LiveData<Resource<PagedList<FoodEntity>>>
 
     fun getFood(id : String) : LiveData<FoodEntity>
 
@@ -21,6 +21,6 @@ interface MonuDataSource {
 
     fun getDailyByDate(date : String) : LiveData<DailyEntity>
 
-    fun setDailyMeal(daily : DailyEntity, food : String, eatTime : String, calories : Int, scope: CoroutineScope)
+    fun setDailyMeal(daily : DailyEntity, food : FoodEntity, eatTime : String, scope: CoroutineScope)
 
 }

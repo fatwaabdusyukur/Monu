@@ -27,9 +27,33 @@ data class DailyEntity(
 
     @NonNull
     @ColumnInfo(name = "target_calories")
-    val targetCalories : Int,
+    val targetCalories : Float,
 
     @NonNull
     @ColumnInfo(name = "calories")
-    var calories : Int
+    var calories : Float,
+
+    @NonNull
+    @ColumnInfo(name = "target_protein")
+    val targetProtein : Float,
+
+    @NonNull
+    @ColumnInfo(name = "protein")
+    var protein : Float,
+
+    @NonNull
+    @ColumnInfo(name = "target_fat")
+    val targetFat : Float,
+
+    @NonNull
+    @ColumnInfo(name = "fat")
+    var fat : Float,
+
+    @NonNull
+    @ColumnInfo(name = "target_carbs")
+    val targetCarbs : Float,
+
+    @NonNull
+    @ColumnInfo(name = "carbs")
+    var carbs : Float
 )

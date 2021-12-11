@@ -9,8 +9,8 @@ import com.capstone.monu.data.local.entity.FoodEntity
 @Dao
 interface FoodDao {
 
-    @Query("SELECT * FROM food")
-    fun getAllDataFood() : DataSource.Factory<Int, FoodEntity>
+    @Query("SELECT * FROM food WHERE label LIKE '%' || :query || '%'")
+    fun getAllDataFood(query : String) : DataSource.Factory<Int, FoodEntity>
 
     @Query("SELECT * FROM food WHERE id = :id")
     fun getDataFood(id : String) : LiveData<FoodEntity>
@@ -18,7 +18,7 @@ interface FoodDao {
     @Query("SELECT * FROM food WHERE id IN (:foods)")
     fun getDataDailyFood(foods : List<String>) : DataSource.Factory<Int, FoodEntity>
 
-    @Query("SELECT * FROM daily_food WHERE date = :date")
+    @Query("SELECT * FROM daily_food WHERE date == :date")
     fun getDataDailyByDate(date : String) : LiveData<DailyEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -23,23 +23,29 @@ class DailyViewModel(private val monuRepository: MonuRepository, context: Contex
             _isAvailable.value = true
         } else {
             val now = SimpleDateFormat("EEE, d MMM yyy", Locale.getDefault()).format(
-                Calendar.getInstance().time)
+                Calendar.getInstance().time).toString()
             _isAvailable.value = !prefDate.equals(now)
         }
         return _isAvailable
     }
 
 
-    fun addDailyMeals(targetCalories : Int) {
+    fun addDailyMeals(targetCalories : Float) {
 
         val currentDate = SimpleDateFormat("EEE, d MMM yyy", Locale.getDefault()).format(Calendar.getInstance().time)
 
         val data = DailyEntity(
-            date = currentDate,
+            date = currentDate.toString(),
             food = "",
             eatTime = "",
             targetCalories = targetCalories,
-            calories = 0
+            calories = 0F,
+            targetProtein = ((targetCalories * 0.15) / 4).toFloat(),
+            protein = 0F,
+            targetFat = ((targetCalories * 0.20) / 9).toFloat(),
+            fat = 0F,
+            targetCarbs = ((targetCalories * 0.65) / 4).toFloat(),
+            carbs = 0F
         )
 
         monuRepository.addDailySchedule(data, viewModelScope)

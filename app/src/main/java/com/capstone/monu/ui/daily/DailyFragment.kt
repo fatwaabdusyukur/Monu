@@ -1,6 +1,7 @@
 package com.capstone.monu.ui.daily
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.R
 import com.capstone.monu.databinding.FragmentDailyBinding
+import com.capstone.monu.ui.detail.DetailDailyActivity
+import com.capstone.monu.utils.DAILY_ID
 import com.capstone.monu.utils.PREF_DAILY_KEY
 import com.capstone.monu.utils.PREF_DATE_KEY
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -34,7 +37,11 @@ class DailyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = DailyAdapter()
+        val adapter = DailyAdapter {
+            val i = Intent(context, DetailDailyActivity::class.java)
+            i.putExtra(DAILY_ID, it.id)
+            startActivity(i)
+        }
         val factory = DailyViewModelFactory.createFactory(requireActivity())
         val sharedPref = requireActivity().getSharedPreferences(PREF_DAILY_KEY, Context.MODE_PRIVATE)
         val viewModel = ViewModelProvider(this, factory)[DailyViewModel::class.java]
@@ -52,10 +59,10 @@ class DailyFragment : Fragment() {
             val btnCancel = dialog.findViewById<Button>(R.id.btn_dialog_cancel)
             btnAdd?.setOnClickListener {
                 val targetCalories = editText?.text.toString()
-                viewModel.addDailyMeals(targetCalories = targetCalories.toInt())
+                viewModel.addDailyMeals(targetCalories = targetCalories.toFloat())
                 sharedPref.edit().putString(
                     PREF_DATE_KEY, SimpleDateFormat("EEE, d MMM yyy", Locale.getDefault()).format(
-                        Calendar.getInstance().time)).apply()
+                        Calendar.getInstance().time).toString()).apply()
                 dialog.dismiss()
                 findNavController().run {
                     popBackStack()
@@ -81,7 +88,7 @@ class DailyFragment : Fragment() {
     }
 
     private fun updateCardAdd(isAvailable : Boolean) {
-        binding.fabAdd.visibility = if (isAvailable) View.VISIBLE else View.GONE
+        binding.fabAdd.isEnabled = isAvailable
     }
 
     override fun onDestroy() {

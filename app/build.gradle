@@ -74,6 +74,8 @@ dependencies {
 
     // Custom View
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+    implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
+
 
     // paging
     implementation 'androidx.paging:paging-runtime-ktx:2.1.2'

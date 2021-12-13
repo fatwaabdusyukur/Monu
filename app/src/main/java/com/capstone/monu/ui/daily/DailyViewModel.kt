@@ -1,10 +1,7 @@
 package com.capstone.monu.ui.daily
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.capstone.monu.data.local.entity.DailyEntity
 import com.capstone.monu.utils.PREF_DAILY_KEY
 import com.capstone.monu.utils.PREF_DATE_KEY
@@ -16,26 +13,32 @@ class DailyViewModel(private val monuRepository: MonuRepository, context: Contex
 
     private val pref = context.getSharedPreferences(PREF_DAILY_KEY, Context.MODE_PRIVATE)
     private val _isAvailable = MutableLiveData<Boolean>()
+    private val date = MutableLiveData<String>()
+
+    init {
+        date.value = SimpleDateFormat("yyy-M-d", Locale.getDefault()).format(Calendar.getInstance().time)
+    }
 
     fun isAvailable() : LiveData<Boolean> {
         val prefDate = pref.getString(PREF_DATE_KEY, "")
         if ("" == prefDate) {
             _isAvailable.value = true
         } else {
-            val now = SimpleDateFormat("EEE, d MMM yyy", Locale.getDefault()).format(
+            val now = SimpleDateFormat("yyy-M-d", Locale.getDefault()).format(
                 Calendar.getInstance().time).toString()
             _isAvailable.value = !prefDate.equals(now)
         }
         return _isAvailable
     }
 
+    fun setDate(date: String) {
+        this.date.value = date
+    }
 
-    fun addDailyMeals(targetCalories : Float) {
-
-        val currentDate = SimpleDateFormat("EEE, d MMM yyy", Locale.getDefault()).format(Calendar.getInstance().time)
+    fun addDailyMeals(date: String, targetCalories : Float) {
 
         val data = DailyEntity(
-            date = currentDate.toString(),
+            date = date,
             food = "",
             eatTime = "",
             targetCalories = targetCalories,
@@ -51,6 +54,6 @@ class DailyViewModel(private val monuRepository: MonuRepository, context: Contex
         monuRepository.addDailySchedule(data, viewModelScope)
     }
 
-    fun getAllDailySchedule() = monuRepository.getAllDailySchedule()
+    fun getDailyByDate() = date.switchMap { monuRepository.getDailyByDate(it) }
 
 }

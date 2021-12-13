@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/colorSecondary"
-    app:cardCornerRadius="7dp"
-    android:padding="10dp"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/daily_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -19,9 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="24sp"
             android:text="@string/your_calories"
-            android:textColor="@color/white"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,20 +25,18 @@
 
         <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/progress_calories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="95dp"
+            android:layout_width="150dp"
+            android:layout_height="170dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="95dp"
             app:cpb_background_progressbar_color="@color/colorAccent"
             app:cpb_background_progressbar_width="15dp"
             app:cpb_progress_direction="to_right"
             app:cpb_progressbar_color="@color/colorPrimary"
             app:cpb_progressbar_width="20dp"
-            app:cpb_progress_max="100"
-            app:cpb_progress="50"
             app:cpb_round_border="true"
+            app:cpb_start_angle="180"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -53,9 +47,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +54,32 @@
             tools:text="@string/calories_value" />
 
 
+        <include
+            android:id="@+id/card_nutrients"
+            layout="@layout/card_nutrients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_target_calories" />
+
+        <Button
+            android:id="@+id/btn_add_food"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="45dp"
+            android:background="@drawable/custom_btn_add"
+            android:text="@string/add_food"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_nutrients" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</ScrollView>

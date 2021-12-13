@@ -34,6 +34,8 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -54,6 +56,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.preference:preference-ktx:1.1.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -75,7 +78,7 @@ dependencies {
     // Custom View
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
     implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
-
+    implementation 'com.github.kizitonwose:CalendarView:1.0.4'
 
     // paging
     implementation 'androidx.paging:paging-runtime-ktx:2.1.2'

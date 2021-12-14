@@ -16,6 +16,8 @@ import com.capstone.monu.R
 import com.capstone.monu.databinding.DailyCalendarDayBinding
 import com.capstone.monu.databinding.FragmentDailyBinding
 import com.capstone.monu.utils.MonuConverter
+import com.capstone.monu.utils.TAG_DAILY
+import com.capstone.monu.utils.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -47,7 +49,7 @@ class DailyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val factory = DailyViewModelFactory.createFactory(requireActivity())
+        val factory = ViewModelFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(this, factory)[DailyViewModel::class.java]
 
         val currentMonth = YearMonth.now()
@@ -74,8 +76,8 @@ class DailyFragment : Fragment() {
                 binding.detailDaily.cardNutrients.apply {
                     showProperty(false)
                     barProtein.max = daily.targetProtein
-                    barFat.max = daily.fat
-                    barCarbs.max = daily.carbs
+                    barFat.max = daily.targetProtein
+                    barCarbs.max = daily.targetCarbs
 
                     barProtein.progress = daily.protein
                     barFat.progress = daily.fat
@@ -85,6 +87,12 @@ class DailyFragment : Fragment() {
                     dailyFat.text = resources.getString(R.string.daily_nut, MonuConverter.doubleToFloor(daily.fat.toDouble()).toString(), MonuConverter.doubleToFloor(daily.targetFat.toDouble()).toString())
                     dailyCarbs.text = resources.getString(R.string.daily_nut, MonuConverter.doubleToFloor(daily.carbs.toDouble()).toString(), MonuConverter.doubleToFloor(daily.targetCarbs.toDouble()).toString())
                 }
+
+                binding.detailDaily.btnAddFood.setOnClickListener {
+                    val fragment = AddFoodFragment(daily)
+                    fragment.show(parentFragmentManager, TAG_DAILY)
+                }
+
             } else showProperty(true)
         }
 

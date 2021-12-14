@@ -18,13 +18,32 @@
         android:name="com.capstone.monu.ui.food.FoodFragment"
         android:label="@string/food"
         tools:layout="@layout/fragment_food"
-        />
+        >
+        <action
+            android:id="@+id/action_navigation_food_to_detail_food_activity"
+            app:destination="@id/detail_food_activity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_daily"
         android:name="com.capstone.monu.ui.daily.DailyFragment"
         android:label="@string/daily_meals"
         tools:layout="@layout/fragment_daily"
-        />
+        >
+        <action
+            android:id="@+id/action_navigation_daily_to_fragment_add_meals"
+            app:destination="@id/fragment_add_meals" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_add_meals"
+        android:name="com.capstone.monu.ui.daily.AddFoodFragment"
+        tools:layout="@layout/add_food_fragment"/>
+
+    <activity
+        android:id="@+id/detail_food_activity"
+        android:name="com.capstone.monu.ui.detail.DetailFoodActivity"
+        android:label="Detail Food"
+        tools:layout="@layout/activity_detail_food"/>
 
 </navigation>

@@ -100,9 +100,6 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
         eatTime: String,
         scope: CoroutineScope
     ) {
-
-
-
         if (daily.food == "") {
             daily.food = food.id
             daily.eatTime = eatTime
@@ -111,8 +108,8 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
             daily.fat = food.fat.toFloat()
             daily.carbs = food.carbohydrate.toFloat()
         } else {
-            daily.food.plus("-").plus(food)
-            daily.eatTime.plus("-").plus(eatTime)
+            daily.food = daily.food.plus("-").plus(food.id)
+            daily.eatTime = daily.eatTime.plus("-").plus(eatTime)
             daily.calories = (daily.calories + food.calories).toFloat()
             daily.protein = (daily.protein + food.protein).toFloat()
             daily.fat = (daily.fat + food.fat).toFloat()

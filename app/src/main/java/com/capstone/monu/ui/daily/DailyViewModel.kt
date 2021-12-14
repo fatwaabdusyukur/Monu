@@ -1,34 +1,19 @@
 package com.capstone.monu.ui.daily
 
-import android.content.Context
+
 import androidx.lifecycle.*
 import com.capstone.monu.data.local.entity.DailyEntity
-import com.capstone.monu.utils.PREF_DAILY_KEY
-import com.capstone.monu.utils.PREF_DATE_KEY
+import com.capstone.monu.data.local.entity.FoodEntity
 import com.capstone.monu.utils.repository.MonuRepository
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DailyViewModel(private val monuRepository: MonuRepository, context: Context) : ViewModel() {
+class DailyViewModel(private val monuRepository: MonuRepository) : ViewModel() {
 
-    private val pref = context.getSharedPreferences(PREF_DAILY_KEY, Context.MODE_PRIVATE)
-    private val _isAvailable = MutableLiveData<Boolean>()
     private val date = MutableLiveData<String>()
 
     init {
         date.value = SimpleDateFormat("yyy-M-d", Locale.getDefault()).format(Calendar.getInstance().time)
-    }
-
-    fun isAvailable() : LiveData<Boolean> {
-        val prefDate = pref.getString(PREF_DATE_KEY, "")
-        if ("" == prefDate) {
-            _isAvailable.value = true
-        } else {
-            val now = SimpleDateFormat("yyy-M-d", Locale.getDefault()).format(
-                Calendar.getInstance().time).toString()
-            _isAvailable.value = !prefDate.equals(now)
-        }
-        return _isAvailable
     }
 
     fun setDate(date: String) {
@@ -55,5 +40,11 @@ class DailyViewModel(private val monuRepository: MonuRepository, context: Contex
     }
 
     fun getDailyByDate() = date.switchMap { monuRepository.getDailyByDate(it) }
+
+    fun setDailyFood(foodEntity: FoodEntity, daily : DailyEntity, eatTime : String) {
+        monuRepository.setDailyMeal(daily, foodEntity, eatTime, viewModelScope)
+    }
+
+    val foods = monuRepository.getFoods("Egg")
 
 }

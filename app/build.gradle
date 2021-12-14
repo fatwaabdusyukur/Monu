@@ -79,6 +79,7 @@ dependencies {
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
     implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
     implementation 'com.github.kizitonwose:CalendarView:1.0.4'
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
 
     // paging
     implementation 'androidx.paging:paging-runtime-ktx:2.1.2'

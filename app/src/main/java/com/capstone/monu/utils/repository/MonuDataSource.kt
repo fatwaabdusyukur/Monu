@@ -21,6 +21,8 @@ interface MonuDataSource {
 
     fun getDailyByDate(date : String) : LiveData<DailyEntity>
 
+    fun getDailyMeals(list : List<String>) : LiveData<List<FoodEntity>>
+
     fun setDailyMeal(daily : DailyEntity, food : FoodEntity, eatTime : String, scope: CoroutineScope)
 
 }

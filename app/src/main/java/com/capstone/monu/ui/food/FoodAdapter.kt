@@ -21,7 +21,7 @@ class FoodAdapter(
             val calories = itemView.context.getString(R.string.food_calories, MonuConverter.doubleToFloor(food.calories).toString())
             binding.itemCalories.text = calories
             Glide.with(itemView.context)
-                .load((food.image ?: itemView.context.resources.getDrawable(R.drawable.image_not_found)))
+                .load(food.image)
                 .into(binding.itemFoodImg)
             itemView.setOnClickListener {
                 onClick(food)

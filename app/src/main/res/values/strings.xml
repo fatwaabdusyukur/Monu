@@ -25,5 +25,6 @@
     <string name="daily_nut">%s/%s Gram</string>
     <string name="nutrients_desc">Nutrients</string>
     <string name="number_formater">%02d</string>
+    <string name="content_desc_food_label">food label</string>
 
 </resources>

@@ -16,7 +16,7 @@ interface FoodDao {
     fun getDataFood(id : String) : LiveData<FoodEntity>
 
     @Query("SELECT * FROM food WHERE id IN (:foods)")
-    fun getDataDailyFood(foods : List<String>) : DataSource.Factory<Int, FoodEntity>
+    fun getDataDailyFood(foods : List<String>) : LiveData<List<FoodEntity>>
 
     @Query("SELECT * FROM daily_food WHERE date == :date")
     fun getDataDailyByDate(date : String) : LiveData<DailyEntity>

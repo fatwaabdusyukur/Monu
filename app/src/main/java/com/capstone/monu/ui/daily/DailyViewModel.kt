@@ -4,6 +4,7 @@ package com.capstone.monu.ui.daily
 import androidx.lifecycle.*
 import com.capstone.monu.data.local.entity.DailyEntity
 import com.capstone.monu.data.local.entity.FoodEntity
+import com.capstone.monu.utils.RANDOM_ING
 import com.capstone.monu.utils.repository.MonuRepository
 import java.text.SimpleDateFormat
 import java.util.*
@@ -11,13 +12,19 @@ import java.util.*
 class DailyViewModel(private val monuRepository: MonuRepository) : ViewModel() {
 
     private val date = MutableLiveData<String>()
+    private val food = MutableLiveData<String>()
 
     init {
         date.value = SimpleDateFormat("yyy-M-d", Locale.getDefault()).format(Calendar.getInstance().time)
+        food.value = RANDOM_ING
     }
 
     fun setDate(date: String) {
         this.date.value = date
+    }
+
+    fun setFood(food : String) {
+        this.food.value = food
     }
 
     fun addDailyMeals(date: String, targetCalories : Float) {
@@ -45,6 +52,8 @@ class DailyViewModel(private val monuRepository: MonuRepository) : ViewModel() {
         monuRepository.setDailyMeal(daily, foodEntity, eatTime, viewModelScope)
     }
 
-    val foods = monuRepository.getFoods("Egg")
+    val foods = food.switchMap { monuRepository.getFoods(it) }
+
+    fun getDailyMeals(list : List<String>) = monuRepository.getDailyMeals(list)
 
 }

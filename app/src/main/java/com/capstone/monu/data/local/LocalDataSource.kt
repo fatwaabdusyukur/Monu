@@ -18,7 +18,7 @@ class LocalDataSource(private val foodDao: FoodDao) {
 
     fun obtainFood(id : String) : LiveData<FoodEntity> = foodDao.getDataFood(id)
 
-    fun obtainDailyFoods(foods : List<String>) : DataSource.Factory<Int, FoodEntity> = foodDao.getDataDailyFood(foods)
+    fun obtainDailyFoods(foods : List<String>) : LiveData<List<FoodEntity>> = foodDao.getDataDailyFood(foods)
 
     fun obtainDaily() : DataSource.Factory<Int, DailyEntity> = foodDao.getAllDailyFood()
 

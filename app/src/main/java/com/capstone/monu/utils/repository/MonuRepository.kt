@@ -94,6 +94,9 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
     override fun getDailyByDate(date: String): LiveData<DailyEntity> =
         localDataSource.obtainDailyByDate(date)
 
+    override fun getDailyMeals(list: List<String>) : LiveData<List<FoodEntity>> =
+        localDataSource.obtainDailyFoods(list)
+
     override fun setDailyMeal(
         daily: DailyEntity,
         food: FoodEntity,

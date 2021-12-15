@@ -12,6 +12,7 @@ import android.widget.Button
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.R
 import com.capstone.monu.databinding.DailyCalendarDayBinding
 import com.capstone.monu.databinding.FragmentDailyBinding
@@ -50,6 +51,7 @@ class DailyFragment : Fragment() {
 
 
         val factory = ViewModelFactory.getInstance(requireActivity())
+        val adapter = DailyMealAdapter()
         viewModel = ViewModelProvider(this, factory)[DailyViewModel::class.java]
 
         val currentMonth = YearMonth.now()
@@ -86,6 +88,22 @@ class DailyFragment : Fragment() {
                     dailyProtein.text = resources.getString(R.string.daily_nut, MonuConverter.doubleToFloor(daily.protein.toDouble()).toString(), MonuConverter.doubleToFloor(daily.targetProtein.toDouble()).toString())
                     dailyFat.text = resources.getString(R.string.daily_nut, MonuConverter.doubleToFloor(daily.fat.toDouble()).toString(), MonuConverter.doubleToFloor(daily.targetFat.toDouble()).toString())
                     dailyCarbs.text = resources.getString(R.string.daily_nut, MonuConverter.doubleToFloor(daily.carbs.toDouble()).toString(), MonuConverter.doubleToFloor(daily.targetCarbs.toDouble()).toString())
+                }
+
+                val list = MonuConverter.changeToList(daily.food)
+
+                viewModel.getDailyMeals(list).observe(viewLifecycleOwner) {
+                    if (it != null) {
+                        with(binding.detailDaily.rvDailyMeals) {
+                            setHasFixedSize(true)
+                            layoutManager = LinearLayoutManager(context)
+                            this.adapter = adapter
+                        }
+
+                        val times = MonuConverter.changeToList(daily.eatTime)
+                        adapter.setData(it, times)
+                        adapter.notifyDataSetChanged()
+                    }
                 }
 
                 binding.detailDaily.btnAddFood.setOnClickListener {

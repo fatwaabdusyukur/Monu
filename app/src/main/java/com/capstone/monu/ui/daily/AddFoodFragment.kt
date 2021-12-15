@@ -1,9 +1,12 @@
 package com.capstone.monu.ui.daily
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -44,6 +47,21 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
 
         var hour = binding.hour.value.toString()
         var minute = binding.minute.value.toString()
+
+        binding.foodSearch.setOnEditorActionListener { tv, action, _ ->
+            return@setOnEditorActionListener when(action) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    tv.clearFocus()
+                    tv.clearComposingText()
+                    val inputManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputManager.hideSoftInputFromWindow(tv.windowToken, 0)
+                    viewModel.setFood(tv.text.toString())
+                    tv.text = ""
+                    true
+                }
+                else -> false
+            }
+        }
 
         binding.hour.setOnValueChangedListener { _, _, newVal ->
            hour = String.format(Locale.US, "%d", newVal)

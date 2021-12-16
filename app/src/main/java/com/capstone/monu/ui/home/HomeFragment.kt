@@ -10,6 +10,11 @@ import com.capstone.monu.R
 import com.capstone.monu.databinding.FragmentHomeBinding
 import com.capstone.monu.utils.MonuConverter
 import com.capstone.monu.utils.ViewModelFactory
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
+import java.util.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -30,6 +35,14 @@ class HomeFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
+        val colorChart = ArrayList<Int>()
+
+        colorChart.add(resources.getColor(R.color.crimson))
+        colorChart.add(resources.getColor(R.color.colorPrimaryVariant))
+        colorChart.add(resources.getColor(R.color.colorSecondary))
+        colorChart.add(resources.getColor(R.color.macha))
+
+
         viewModel.daily.observe(viewLifecycleOwner) {
             if (it != null) {
 
@@ -46,6 +59,31 @@ class HomeFragment : Fragment() {
                     barCarbs.max = it.targetCarbs
                     barCarbs.progress = it.carbs
                     barCarbs.progressText = MonuConverter.doubleToFloor(it.carbs.toDouble()).toString()
+
+                    val entries = ArrayList<PieEntry>()
+                    entries.add(PieEntry(it.protein * 4, "Protein"))
+                    entries.add(PieEntry(it.fat * 4, "Fat"))
+                    entries.add(PieEntry(it.carbs * 9, "Carbs"))
+                    entries.add(PieEntry(it.calories, "Other"))
+
+                    val dataSet = PieDataSet(entries, "Nutrition Percent")
+                    dataSet.colors = colorChart
+                    val data = PieData(dataSet)
+
+                    with(data) {
+                        setValueFormatter(PercentFormatter())
+                        setValueTextSize(17F)
+                        setValueTextColor(R.color.white)
+                    }
+
+                    binding.pieChart.apply {
+                        setEntryLabelColor(R.color.white)
+                        setEntryLabelTextSize(19F)
+                        animateXY(1000, 1000)
+                        setUsePercentValues(true)
+                        this.data = data
+                        invalidate()
+                    }
                 }
 
             }

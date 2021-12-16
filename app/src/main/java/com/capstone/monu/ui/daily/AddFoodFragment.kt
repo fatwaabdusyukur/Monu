@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.R
 import com.capstone.monu.data.local.entity.DailyEntity
@@ -115,6 +116,8 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
             loading.visibility = if (isLoading) View.VISIBLE else View.GONE
             hour.visibility = if (isLoading) View.GONE else View.VISIBLE
             minute.visibility = if (isLoading) View.GONE else View.VISIBLE
+            textView2.visibility = if (isLoading) View.GONE else View.VISIBLE
+            textView3.visibility = if (isLoading) View.GONE else View.VISIBLE
         }
     }
 

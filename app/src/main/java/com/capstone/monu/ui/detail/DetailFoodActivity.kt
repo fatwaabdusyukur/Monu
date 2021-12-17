@@ -44,6 +44,10 @@ class DetailFoodActivity : AppCompatActivity() {
             barFat.progress = food.fat.toFloat()
             barCarbs.progress = food.carbohydrate.toFloat()
 
+            barProtein.progressText = MonuConverter.doubleToFloor(food.protein).toString()
+            barFat.progressText = MonuConverter.doubleToFloor(food.fat).toString()
+            barCarbs.progressText = MonuConverter.doubleToFloor(food.carbohydrate).toString()
+
             detailCalories.text = resources.getString(R.string.detail_calories, MonuConverter.doubleToFloor(food.calories).toString())
 
         }

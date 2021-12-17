@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.R
 import com.capstone.monu.data.local.entity.DailyEntity
@@ -19,6 +18,7 @@ import com.capstone.monu.ui.food.FoodAdapter
 import com.capstone.monu.utils.ViewModelFactory
 import com.capstone.monu.utils.vo.Status
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
@@ -80,6 +80,7 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
                 .setPositiveButton("Add") { d , _ ->
                     viewModel.setDailyFood(it, data, time)
                     d.dismiss()
+                    showSuccessFeedback()
                 }
                 .setNegativeButton("Cancel") { d, _ ->
                     d.cancel()
@@ -108,6 +109,14 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
             }
         }
 
+    }
+
+    private fun showSuccessFeedback() {
+        Snackbar.make(
+            binding.addFragmentContainer,
+            "Add Food Success",
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
     private fun showLoading(isLoading : Boolean) {

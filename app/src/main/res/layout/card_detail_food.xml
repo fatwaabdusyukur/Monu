@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="@+id/tv_detail_food_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_food_name" />
 
-    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+    <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
         android:id="@+id/bar_protein"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,15 +44,11 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:rcBackgroundColor="@color/salmon"
-        app:rcBackgroundPadding="2dp"
-        app:rcIconBackgroundColor="@color/colorAccent"
-        app:rcIconPadding="5dp"
-        app:rcIconSize="30dp"
-        app:rcIconSrc="@drawable/nutrient_protein"
-        app:rcProgress="50"
-        app:rcProgressColor="@color/colorPrimary"
-        app:rcRadius="5dp" />
+        app:rcBackgroundColor="@color/crimson_light"
+        app:rcBackgroundPadding="3dp"
+        app:rcTextPositionPriority="inside"
+        app:rcProgressColor="@color/crimson"
+        app:rcRadius="80dp" />
 
     <TextView
         android:id="@+id/textView10"
@@ -65,7 +61,7 @@
         app:layout_constraintStart_toStartOf="@+id/tv_detail_food_name"
         app:layout_constraintTop_toBottomOf="@+id/bar_protein" />
 
-    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+    <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
         android:id="@+id/bar_fat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -77,14 +73,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         app:rcBackgroundColor="@color/salmon"
-        app:rcBackgroundPadding="2dp"
-        app:rcIconBackgroundColor="@color/crimson_light"
-        app:rcIconPadding="5dp"
-        app:rcIconSize="30dp"
-        app:rcIconSrc="@drawable/nutrient_fat"
-        app:rcProgress="50"
-        app:rcProgressColor="@color/crimson"
-        app:rcRadius="5dp" />
+        app:rcBackgroundPadding="3dp"
+        app:rcProgressColor="@color/colorPrimary"
+        app:rcTextPositionPriority="inside"
+        app:rcRadius="80dp" />
 
     <TextView
         android:id="@+id/textView5"
@@ -98,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bar_fat" />
 
 
-    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+    <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
         android:id="@+id/bar_carbs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -110,14 +102,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:rcBackgroundColor="@color/salmon"
-        app:rcBackgroundPadding="2dp"
-        app:rcIconBackgroundColor="@color/colorSecondary"
-        app:rcIconPadding="5dp"
-        app:rcIconSize="30dp"
-        app:rcIconSrc="@drawable/nutrient_fat"
-        app:rcProgress="50"
+        app:rcBackgroundPadding="3dp"
         app:rcProgressColor="@color/colorSecondaryVariant"
-        app:rcRadius="5dp" />
+        app:rcTextPositionPriority="inside"
+        app:rcRadius="80dp" />
 
     <ImageView
         android:id="@+id/imageView"

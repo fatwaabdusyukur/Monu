@@ -25,10 +25,12 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.Size
+import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class DailyFragment : Fragment() {
 
@@ -37,6 +39,7 @@ class DailyFragment : Fragment() {
 
     private var selectedDate = LocalDate.now()
     private lateinit var viewModel: DailyViewModel
+    private lateinit var date : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +67,31 @@ class DailyFragment : Fragment() {
             daySize = Size(dayWidth, dayHeight)
             setup(currentMonth, currentMonth.plusMonths(3), DayOfWeek.values().random())
             scrollToDate(LocalDate.now())
+        }
+
+        date = SimpleDateFormat("yyy-MM-dd", Locale.getDefault()).format(
+            Calendar.getInstance().time).toString()
+
+        binding.fabAddDaily.setOnClickListener {
+            val dialog = BottomSheetDialog(requireActivity())
+            dialog.setContentView(R.layout.dialog_add_daily)
+            val editText = dialog.findViewById<TextInputEditText>(R.id.add_target_calories)
+            val btnAdd = dialog.findViewById<Button>(R.id.btn_add_daily_schedule)
+            val btnCancel = dialog.findViewById<Button>(R.id.btn_dialog_cancel)
+            btnAdd?.setOnClickListener {
+                val targetCalories = editText?.text.toString()
+                viewModel.addDailyMeals(date = date,targetCalories = targetCalories.toFloat())
+                dialog.dismiss()
+                findNavController().run {
+                    popBackStack()
+                    navigate(R.id.navigation_daily)
+                }
+            }
+
+            btnCancel?.setOnClickListener {
+                dialog.cancel()
+            }
+            dialog.show()
         }
 
         viewModel.getDailyByDate().observe(viewLifecycleOwner) { daily ->
@@ -158,29 +186,7 @@ class DailyFragment : Fragment() {
             oldDate?.let { binding.dailyCalendar.notifyDateChanged(it) }
             binding.dailyCalendar.notifyDateChanged(date)
             viewModel.setDate(date.toString())
-
-            binding.fabAddDaily.setOnClickListener {
-                val dialog = BottomSheetDialog(requireActivity())
-                dialog.setContentView(R.layout.dialog_add_daily)
-                val editText = dialog.findViewById<TextInputEditText>(R.id.add_target_calories)
-                val btnAdd = dialog.findViewById<Button>(R.id.btn_add_daily_schedule)
-                val btnCancel = dialog.findViewById<Button>(R.id.btn_dialog_cancel)
-                btnAdd?.setOnClickListener {
-                    val targetCalories = editText?.text.toString()
-                    viewModel.addDailyMeals(date = date.toString(),targetCalories = targetCalories.toFloat())
-                    dialog.dismiss()
-                    findNavController().run {
-                        popBackStack()
-                        navigate(R.id.navigation_daily)
-                    }
-                }
-
-                btnCancel?.setOnClickListener {
-                    dialog.cancel()
-                }
-                dialog.show()
-            }
-
+            this.date = date.toString()
         }
     }
 

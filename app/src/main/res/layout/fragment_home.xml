@@ -58,6 +58,8 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="21sp"
+            android:textStyle="bold"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -66,25 +68,26 @@
             android:text="@string/empty_target_calories" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView6"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="20dp"
             android:padding="10dp"
-            app:cardCornerRadius="7dp"
+            app:cardCornerRadius="16.5dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/pie_chart">
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:id="@+id/bar_protein"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 app:rcBackgroundColor="@color/salmon"
                 app:rcBackgroundPadding="2dp"
-                android:layout_margin="10dp"
                 app:rcMax="100"
                 app:rcProgress="0"
                 app:rcProgressColor="@color/crimson"
@@ -96,17 +99,18 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:padding="10dp"
-            app:cardCornerRadius="7dp"
+            app:cardCornerRadius="16.5dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:id="@+id/bar_fat"
@@ -130,14 +134,16 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
             android:padding="10dp"
-            app:cardCornerRadius="7dp"
+            app:cardCornerRadius="16.5dp"
             app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/cardView5">
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:id="@+id/bar_carbs"
@@ -159,15 +165,14 @@
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pie_chart"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="300dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_target_calories" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

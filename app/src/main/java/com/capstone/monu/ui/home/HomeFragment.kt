@@ -52,18 +52,18 @@ class HomeFragment : Fragment() {
                     progressCalories.progress = it.calories
                     barProtein.max = it.targetProtein
                     barProtein.progress = it.protein
-                    barProtein.progressText = MonuConverter.doubleToFloor(it.protein.toDouble()).toString()
+                    barProtein.progressText = if (it.protein == 0F) "0" else MonuConverter.doubleToFloor(it.protein.toDouble()).toString()
                     barFat.max = it.targetFat
                     barFat.progress = it.fat
-                    barFat.progressText = MonuConverter.doubleToFloor(it.fat.toDouble()).toString()
+                    barFat.progressText = if (it.fat == 0F) "0" else MonuConverter.doubleToFloor(it.fat.toDouble()).toString()
                     barCarbs.max = it.targetCarbs
                     barCarbs.progress = it.carbs
-                    barCarbs.progressText = MonuConverter.doubleToFloor(it.carbs.toDouble()).toString()
+                    barCarbs.progressText = if (it.carbs == 0F) "0" else MonuConverter.doubleToFloor(it.carbs.toDouble()).toString()
 
                     val entries = ArrayList<PieEntry>()
                     entries.add(PieEntry(it.protein * 4, "Protein"))
-                    entries.add(PieEntry(it.fat * 4, "Fat"))
-                    entries.add(PieEntry(it.carbs * 9, "Carbs"))
+                    entries.add(PieEntry(it.fat * 9, "Fat"))
+                    entries.add(PieEntry(it.carbs * 4, "Carbs"))
                     entries.add(PieEntry(it.calories, "Other"))
 
                     val dataSet = PieDataSet(entries, "Nutrition Percent")
@@ -72,13 +72,17 @@ class HomeFragment : Fragment() {
 
                     with(data) {
                         setValueFormatter(PercentFormatter())
-                        setValueTextSize(17F)
-                        setValueTextColor(R.color.white)
+                        setValueTextSize(14F)
+                        setValueTextColor(resources.getColor(R.color.white))
                     }
 
                     binding.pieChart.apply {
-                        setEntryLabelColor(R.color.white)
-                        setEntryLabelTextSize(19F)
+                        if (it.calories != 0F) visibility = View.VISIBLE
+                        description.isEnabled = false
+                        setCenterTextSize(19F)
+                        centerText = "Macro Nutrition"
+                        setEntryLabelColor(resources.getColor(R.color.white))
+                        setEntryLabelTextSize(17F)
                         animateXY(1000, 1000)
                         setUsePercentValues(true)
                         this.data = data

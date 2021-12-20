@@ -25,7 +25,7 @@ interface FoodDao {
     fun insertFood(vararg food : FoodEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDailyFood(dailyFood : DailyEntity)
+    suspend fun insertDailyFood(vararg dailyFood : DailyEntity)
 
     @Update
     suspend fun updateDailyFood(daily: DailyEntity)

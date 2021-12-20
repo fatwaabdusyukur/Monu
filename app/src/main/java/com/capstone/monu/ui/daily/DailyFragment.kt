@@ -8,19 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.R
 import com.capstone.monu.databinding.DailyCalendarDayBinding
 import com.capstone.monu.databinding.FragmentDailyBinding
+import com.capstone.monu.ui.dialog.AddDailyFragment
+import com.capstone.monu.ui.dialog.AddFoodFragment
 import com.capstone.monu.utils.MonuConverter
 import com.capstone.monu.utils.TAG_DAILY
 import com.capstone.monu.utils.ViewModelFactory
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.textfield.TextInputEditText
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
@@ -73,25 +71,8 @@ class DailyFragment : Fragment() {
             Calendar.getInstance().time).toString()
 
         binding.fabAddDaily.setOnClickListener {
-            val dialog = BottomSheetDialog(requireActivity())
-            dialog.setContentView(R.layout.dialog_add_daily)
-            val editText = dialog.findViewById<TextInputEditText>(R.id.add_target_calories)
-            val btnAdd = dialog.findViewById<Button>(R.id.btn_add_daily_schedule)
-            val btnCancel = dialog.findViewById<Button>(R.id.btn_dialog_cancel)
-            btnAdd?.setOnClickListener {
-                val targetCalories = editText?.text.toString()
-                viewModel.addDailyMeals(date = date,targetCalories = targetCalories.toFloat())
-                dialog.dismiss()
-                findNavController().run {
-                    popBackStack()
-                    navigate(R.id.navigation_daily)
-                }
-            }
-
-            btnCancel?.setOnClickListener {
-                dialog.cancel()
-            }
-            dialog.show()
+            val fragment = AddDailyFragment()
+            fragment.show(parentFragmentManager, "ADD DAILY")
         }
 
         viewModel.getDailyByDate().observe(viewLifecycleOwner) { daily ->

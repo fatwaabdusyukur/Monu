@@ -13,7 +13,6 @@
         android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/month_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -23,7 +22,6 @@
                 tools:text="Jun" />
 
             <TextView
-                android:id="@+id/date_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -34,7 +32,6 @@
                 tools:text="24" />
 
             <TextView
-                android:id="@+id/day_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,7 +42,6 @@
                 tools:text="Mon" />
 
         <View
-            android:id="@+id/exSevenSelectedView"
             android:layout_width="match_parent"
             android:layout_height="6dp"
             android:layout_gravity="bottom"

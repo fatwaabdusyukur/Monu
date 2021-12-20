@@ -147,7 +147,7 @@
             app:rcIconBackgroundColor="@color/colorSecondary"
             app:rcIconPadding="5dp"
             app:rcIconSize="30dp"
-            app:rcIconSrc="@drawable/nutrient_fat"
+            app:rcIconSrc="@drawable/nutrient_carb"
             app:rcProgress="50"
             app:rcProgressColor="@color/colorSecondaryVariant"
             app:rcRadius="5dp" />

@@ -15,6 +15,8 @@ interface MonuDataSource {
 
     fun addDailySchedule(dailyEntity: DailyEntity, scope : CoroutineScope)
 
+    fun addDailySchedule(list : List<DailyEntity>, scope: CoroutineScope)
+
     fun getAllDailySchedule() : LiveData<PagedList<DailyEntity>>
 
     fun getDailySchedule(id : Int) : LiveData<DailyEntity>

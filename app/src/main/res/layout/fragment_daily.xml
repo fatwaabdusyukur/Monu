@@ -21,12 +21,10 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/daily_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"/>
 
             <com.kizitonwose.calendarview.CalendarView
-                android:id="@+id/daily_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cv_dayViewResource="@layout/daily_calendar_day"
@@ -42,7 +40,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_daily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
@@ -58,7 +55,6 @@
         >
 
         <include
-            android:id="@+id/detail_daily"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/detail_daily"

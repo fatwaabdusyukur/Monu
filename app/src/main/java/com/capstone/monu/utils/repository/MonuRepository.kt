@@ -77,6 +77,14 @@ class MonuRepository private constructor(private val localDataSource: LocalDataS
         }
     }
 
+    override fun addDailySchedule(list: List<DailyEntity>, scope: CoroutineScope) {
+        scope.launch(Dispatchers.IO) {
+            list.forEach {
+                localDataSource.addDailyFood(it)
+            }
+        }
+    }
+
     override fun getAllDailySchedule(): LiveData<PagedList<DailyEntity>> {
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)

@@ -108,7 +108,6 @@
         app:rcRadius="80dp" />
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
@@ -128,7 +127,6 @@
         tools:text="@string/detail_calories" />
 
     <Button
-        android:id="@+id/btn_add_food"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"

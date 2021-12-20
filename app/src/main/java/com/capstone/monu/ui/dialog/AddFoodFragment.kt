@@ -1,4 +1,4 @@
-package com.capstone.monu.ui.daily
+package com.capstone.monu.ui.dialog
 
 import android.content.Context
 import android.os.Bundle
@@ -43,7 +43,7 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val factory = ViewModelFactory.getInstance(requireActivity())
-        val viewModel = ViewModelProvider(this, factory)[DailyViewModel::class.java]
+        val viewModel = ViewModelProvider(this, factory)[DialogViewModel::class.java]
 
 
         var hour = binding.hour.value.toString()

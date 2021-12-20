@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation.xml"
     app:startDestination="@id/navigation_home"
     >
 
@@ -37,7 +36,7 @@
 
     <fragment
         android:id="@+id/fragment_add_meals"
-        android:name="com.capstone.monu.ui.daily.AddFoodFragment"
+        android:name="com.capstone.monu.ui.dialog.AddFoodFragment"
         tools:layout="@layout/add_food_fragment"/>
 
     <activity

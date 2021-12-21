@@ -9,8 +9,6 @@ import com.capstone.monu.data.local.entity.FoodEntity
 import com.capstone.monu.utils.MonuConverter
 import com.capstone.monu.utils.RANDOM_ING
 import com.capstone.monu.utils.repository.MonuRepository
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class DialogViewModel(private val monuRepository: MonuRepository) : ViewModel() {
@@ -31,7 +29,7 @@ class DialogViewModel(private val monuRepository: MonuRepository) : ViewModel() 
 
     val foods = food.switchMap { monuRepository.getFoods(it) }
 
-    fun addDaily(longDay : Int, weight : Int, height : Int, age : Int, Gender : String, activity : String) {
+    fun addDaily(selectedDate : String, longDay : Int, weight : Int, height : Int, age : Int, Gender : String, activity : String) {
         val bmr = if (Gender == MALE) 66.5 + (13.7 * weight) + (5 * height) - (6.8 * age) else 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)
         val targetCalories = when(activity) {
             LIGHT -> bmr * 1.2
@@ -39,12 +37,11 @@ class DialogViewModel(private val monuRepository: MonuRepository) : ViewModel() 
             else -> bmr * 1.4
         }
 
-        val date = SimpleDateFormat("yyy-M-d", Locale.getDefault()).format(Calendar.getInstance().time)
-        val dates = MonuConverter.getDates(longDay)
+        val dates = MonuConverter.getDates(selectedDate, longDay)
 
         if (longDay == 1) {
             val daily = DailyEntity(
-                date = date,
+                date = selectedDate,
                 food = "",
                 eatTime = "",
                 targetCalories = targetCalories.toFloat(),

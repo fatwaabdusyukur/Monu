@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.capstone.monu.R
 import com.capstone.monu.databinding.AddDailyFragmentBinding
 import com.capstone.monu.utils.ViewModelFactory
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-class AddDailyFragment : DialogFragment() {
+class AddDailyFragment(private val date : LocalDate) : DialogFragment() {
 
     private var _binding : AddDailyFragmentBinding? = null
     private val binding get() = _binding!!
@@ -35,6 +36,7 @@ class AddDailyFragment : DialogFragment() {
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel = ViewModelProvider(this, factory)[DialogViewModel::class.java]
         var day = 1
+        val selectedDate = DateTimeFormatter.ofPattern("yyy-MM-dd").format(date)
 
         binding.day.setOnValueChangedListener { _, _, newVal ->
             day = newVal
@@ -85,6 +87,7 @@ class AddDailyFragment : DialogFragment() {
             val age = binding.age.text
 
             viewModel.addDaily(
+                selectedDate,
                 day,
                 weight.toString().toInt(),
                 height.toString().toInt(),
@@ -93,10 +96,7 @@ class AddDailyFragment : DialogFragment() {
                 activity
             )
 
-            findNavController().run {
-                popBackStack()
-                navigate(R.id.navigation_daily)
-            }
+            dialog?.dismiss()
 
         }
 

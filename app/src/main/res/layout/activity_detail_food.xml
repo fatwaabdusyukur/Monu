@@ -11,6 +11,7 @@
        android:layout_height="wrap_content">
 
        <ImageView
+           android:id="@+id/img_detail_food"
            android:layout_width="match_parent"
            android:layout_height="370dp"
            android:contentDescription="@string/food_image_desc"
@@ -21,6 +22,7 @@
            tools:src="@tools:sample/avatars" />
 
        <include
+           android:id="@+id/card_food"
            layout="@layout/card_detail_food"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"

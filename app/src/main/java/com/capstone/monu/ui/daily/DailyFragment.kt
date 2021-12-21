@@ -38,6 +38,7 @@ class DailyFragment : Fragment() {
     private var selectedDate = LocalDate.now()
     private lateinit var viewModel: DailyViewModel
     private lateinit var date : String
+    private lateinit var localDate : LocalDate
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +55,7 @@ class DailyFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity())
         val adapter = DailyMealAdapter()
         viewModel = ViewModelProvider(this, factory)[DailyViewModel::class.java]
+        localDate = LocalDate.now()
 
         val currentMonth = YearMonth.now()
         val dm = DisplayMetrics()
@@ -71,7 +73,7 @@ class DailyFragment : Fragment() {
             Calendar.getInstance().time).toString()
 
         binding.fabAddDaily.setOnClickListener {
-            val fragment = AddDailyFragment()
+            val fragment = AddDailyFragment(localDate)
             fragment.show(parentFragmentManager, "ADD DAILY")
         }
 
@@ -168,6 +170,7 @@ class DailyFragment : Fragment() {
             binding.dailyCalendar.notifyDateChanged(date)
             viewModel.setDate(date.toString())
             this.date = date.toString()
+            localDate = date
         }
     }
 

@@ -26,6 +26,7 @@ class DetailFoodActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
         val id = intent.getStringExtra(FOOD_ID)
         viewModel.getFood(id!!).observe(this, Observer(this::showDetailFood))
+
     }
 
     private fun showDetailFood(food : FoodEntity) {

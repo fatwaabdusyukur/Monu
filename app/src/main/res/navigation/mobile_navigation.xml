@@ -40,21 +40,13 @@
     <fragment
         android:id="@+id/fragment_add_meals"
         android:name="com.capstone.monu.ui.dialog.AddFoodFragment"
-        tools:layout="@layout/add_food_fragment">
-        <action
-            android:id="@+id/action_fragment_add_meals_to_navigation_daily"
-            app:destination="@id/navigation_daily" />
-    </fragment>
+        tools:layout="@layout/add_food_fragment"/>
 
     <fragment
         android:id="@+id/fragment_add_daily"
         android:name="com.capstone.monu.ui.dialog.AddDailyFragment"
         tools:layout="@layout/add_daily_fragment"
-        >
-        <action
-            android:id="@+id/action_fragment_add_daily_to_navigation_daily"
-            app:destination="@id/navigation_daily" />
-    </fragment>
+        />
 
     <activity
         android:id="@+id/detail_food_activity"

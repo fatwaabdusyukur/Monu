@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.detail.DetailFoodActivity"></activity>
-        <activity android:name=".ui.detail.DetailDailyActivity" />
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.detail.DetailFoodActivity" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.splashscreen.SplashScreenActivity"
+            android:theme="@style/splashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

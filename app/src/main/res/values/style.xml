@@ -17,6 +17,11 @@
         <item name="bottomSheetDialogTheme">@style/dialogAddStyle</item>
     </style>
 
+    <style name="splashTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/colorPrimaryVariant</item>
+    </style>
+
     <style name="DialogTheme" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>

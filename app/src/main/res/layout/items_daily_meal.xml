@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dosis"
                 android:layout_gravity="center"
-                android:textSize="24sp"
+                android:textSize="21sp"
                 android:textStyle="bold"
                 tools:text="@string/food"
                 android:layout_marginEnd="25dp"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/play"
             android:layout_gravity="center"
-            android:textSize="24sp"
+            android:textSize="20sp"
             tools:text="12:00"/>
 
 

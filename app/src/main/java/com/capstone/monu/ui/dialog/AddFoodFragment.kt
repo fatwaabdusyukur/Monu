@@ -12,18 +12,24 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.R
-import com.capstone.monu.data.local.entity.DailyEntity
+import com.capstone.monu.data.local.entity.FoodEntity
 import com.capstone.monu.databinding.AddFoodFragmentBinding
+import com.capstone.monu.ui.daily.DailyFragment
 import com.capstone.monu.ui.food.FoodAdapter
 import com.capstone.monu.utils.ViewModelFactory
 import com.capstone.monu.utils.vo.Status
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
-class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
+class AddFoodFragment : DialogFragment() {
 
     private var _binding : AddFoodFragmentBinding? = null
     private val binding get() = _binding!!
+    private var dialogListener : OnFoodDialogListener? = null
+
+    interface OnFoodDialogListener {
+        fun addFood(food : FoodEntity, time : String)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +49,6 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
 
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel = ViewModelProvider(this, factory)[DialogViewModel::class.java]
-
 
         var hour = binding.hour.value.toString()
         var minute = binding.minute.value.toString()
@@ -68,7 +73,7 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
         }
 
         binding.minute.setOnValueChangedListener { _, _, newVal ->
-            minute = String.format(Locale.US, "%d", newVal)
+            minute = String.format(Locale.US, "%02d", newVal)
         }
 
         val adapter = FoodAdapter {
@@ -77,9 +82,9 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
                 .setTitle("Adding Food")
                 .setMessage("Did you eat ${it.label} at $time ?")
                 .setPositiveButton("Add") { d , _ ->
-                    viewModel.setDailyFood(it, data, time)
+                    dialogListener?.addFood(it, time)
                     d.dismiss()
-                    this.dialog?.dismiss()
+                    dialog?.dismiss()
                 }
                 .setNegativeButton("Cancel") { d, _ ->
                     d.cancel()
@@ -119,6 +124,19 @@ class AddFoodFragment(private val data : DailyEntity) : DialogFragment() {
             textView2.visibility = if (isLoading) View.GONE else View.VISIBLE
             textView3.visibility = if (isLoading) View.GONE else View.VISIBLE
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val fragment = parentFragment
+
+        if (fragment is DailyFragment) this.dialogListener = fragment.onFoodDialogListener
+
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        this.dialogListener = null
     }
 
     override fun onDestroy() {

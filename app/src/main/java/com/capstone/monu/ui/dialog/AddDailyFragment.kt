@@ -1,21 +1,24 @@
 package com.capstone.monu.ui.dialog
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import com.capstone.monu.R
 import com.capstone.monu.databinding.AddDailyFragmentBinding
-import com.capstone.monu.utils.ViewModelFactory
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import com.capstone.monu.ui.daily.DailyFragment
 
-class AddDailyFragment(private val date : LocalDate) : DialogFragment() {
+class AddDailyFragment : DialogFragment() {
 
     private var _binding : AddDailyFragmentBinding? = null
     private val binding get() = _binding!!
+    private var dialogListener : OnDialogListener? = null
+
+    interface OnDialogListener {
+        fun addDaily(weight : Int, height : Int, age : Int, gender : String, activity : String, day : Int)
+    }
 
     override fun getTheme(): Int {
         return R.style.DialogTheme
@@ -26,17 +29,14 @@ class AddDailyFragment(private val date : LocalDate) : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = AddDailyFragmentBinding.inflate(layoutInflater)
+        _binding = AddDailyFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        val viewModel = ViewModelProvider(this, factory)[DialogViewModel::class.java]
         var day = 1
-        val selectedDate = DateTimeFormatter.ofPattern("yyy-MM-dd").format(date)
 
         binding.day.setOnValueChangedListener { _, _, newVal ->
             day = newVal
@@ -82,24 +82,30 @@ class AddDailyFragment(private val date : LocalDate) : DialogFragment() {
                 }
             }
 
-            val weight = binding.weight.text
-            val height = binding.height.text
-            val age = binding.age.text
+            val weight = binding.weight.text.toString()
+            val height = binding.height.text.toString()
+            val age = binding.age.text.toString()
 
-            viewModel.addDaily(
-                selectedDate,
-                day,
-                weight.toString().toInt(),
-                height.toString().toInt(),
-                age.toString().toInt(),
-                gender,
-                activity
-            )
-
+            dialogListener?.addDaily(weight.toInt(), height.toInt(), age.toInt(), gender, activity, day)
             dialog?.dismiss()
 
         }
 
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val fragment = parentFragment
+
+        if (fragment is DailyFragment) {
+            this.dialogListener = fragment.onDailyDialogListener
+        }
+
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        this.dialogListener = null
     }
 
     override fun onDestroy() {

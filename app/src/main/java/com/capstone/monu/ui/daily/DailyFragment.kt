@@ -12,12 +12,13 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.monu.R
+import com.capstone.monu.data.local.entity.DailyEntity
+import com.capstone.monu.data.local.entity.FoodEntity
 import com.capstone.monu.databinding.DailyCalendarDayBinding
 import com.capstone.monu.databinding.FragmentDailyBinding
 import com.capstone.monu.ui.dialog.AddDailyFragment
 import com.capstone.monu.ui.dialog.AddFoodFragment
 import com.capstone.monu.utils.MonuConverter
-import com.capstone.monu.utils.TAG_DAILY
 import com.capstone.monu.utils.ViewModelFactory
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.ui.DayBinder
@@ -39,6 +40,7 @@ class DailyFragment : Fragment() {
     private lateinit var viewModel: DailyViewModel
     private lateinit var date : String
     private lateinit var localDate : LocalDate
+    private var daily : DailyEntity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +52,6 @@ class DailyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         val factory = ViewModelFactory.getInstance(requireActivity())
         val adapter = DailyMealAdapter()
@@ -73,12 +74,13 @@ class DailyFragment : Fragment() {
             Calendar.getInstance().time).toString()
 
         binding.fabAddDaily.setOnClickListener {
-            val fragment = AddDailyFragment(localDate)
-            fragment.show(parentFragmentManager, "ADD DAILY")
+            val fragment = AddDailyFragment()
+            fragment.show(childFragmentManager, "ADD DAILY")
         }
 
         viewModel.getDailyByDate().observe(viewLifecycleOwner) { daily ->
             if (daily != null) {
+                this.daily = daily
                 binding.detailDaily.detailTargetCalories.text = resources.getString(R.string.calories_value, daily.calories.toInt().toString(), daily.targetCalories.toInt().toString())
 
                 binding.detailDaily.progressCalories.apply {
@@ -118,8 +120,8 @@ class DailyFragment : Fragment() {
                 }
 
                 binding.detailDaily.btnAddFood.setOnClickListener {
-                    val fragment = AddFoodFragment(daily)
-                    fragment.show(parentFragmentManager, TAG_DAILY)
+                    val fragment = AddFoodFragment()
+                    fragment.show(childFragmentManager, "ADD FOOD")
                 }
 
             } else showProperty(true)
@@ -183,4 +185,36 @@ class DailyFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+    internal  var onDailyDialogListener : AddDailyFragment.OnDialogListener = object : AddDailyFragment.OnDialogListener {
+        override fun addDaily(
+            weight: Int,
+            height: Int,
+            age: Int,
+            gender: String,
+            activity: String,
+            day: Int
+        ) {
+            val date = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate)
+            viewModel.addDaily(
+                selectedDate = date,
+                longDay = day,
+                weight = weight,
+                height = height,
+                age = age,
+                Gender = gender,
+                activity = activity
+            )
+        }
+
+    }
+
+    internal var onFoodDialogListener : AddFoodFragment.OnFoodDialogListener = object : AddFoodFragment.OnFoodDialogListener {
+        override fun addFood(food: FoodEntity, time: String) {
+            viewModel.setDailyFood(food, daily!!, time)
+        }
+
+    }
+
+
 }

@@ -1,158 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bg_edittext"
-        android:hint="@string/enter_your_weight"
-        android:inputType="numberDecimal"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bg_edittext"
-        android:hint="@string/enter_your_height"
-        android:inputType="numberDecimal"
-        android:padding="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/age"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/weight"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/rg_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/height">
-
-        <RadioButton
-            android:id="@+id/male"
+        <EditText
+            android:id="@+id/weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="@string/male" />
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_edittext"
+            android:hint="@string/enter_your_weight"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/female"
+        <EditText
+            android:id="@+id/height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/female" />
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_edittext"
+            android:hint="@string/enter_your_height"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/age"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/weight"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RadioGroup>
-
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/bg_edittext"
-        android:hint="@string/age"
-        android:inputType="numberDecimal"
-        android:padding="10dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/foodNutrientDesc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="25dp"
-        android:text="@string/long_calorie_target"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg_activity" />
-
-    <com.shawnlin.numberpicker.NumberPicker
-        android:id="@+id/day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:np_dividerColor="@color/colorPrimaryVariant"
-        app:np_formatter="@string/format_number_picker_day"
-        app:np_height="140dp"
-        app:np_max="30"
-        app:np_min="1"
-        app:np_scrollerEnabled="true"
-        app:np_selectedTextColor="@color/colorPrimary"
-        app:np_selectedTextSize="16sp"
-        app:np_textColor="@color/colorPrimaryVariant"
-        app:np_textSize="15sp"
-        app:np_width="70dp" />
-
-    <RadioGroup
-        android:id="@+id/rg_activity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="7dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg_gender">
-
-        <RadioButton
-            android:id="@+id/light_activity"
+        <RadioGroup
+            android:id="@+id/rg_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:text="@string/lightly_activity" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/height">
 
-        <RadioButton
-            android:id="@+id/moderate_activity"
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/female" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:text="@string/moderate_activity" />
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/bg_edittext"
+            android:hint="@string/age"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/heavy_activity"
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/foodNutrientDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="25dp"
+            android:textAlignment="center"
+            android:text="@string/long_calorie_target"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rg_activity" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/heavy_activity" />
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:np_dividerColor="@color/colorPrimaryVariant"
+            app:np_formatter="@string/format_number_picker_day"
+            app:np_height="140dp"
+            app:np_max="30"
+            app:np_min="1"
+            app:np_scrollerEnabled="true"
+            app:np_selectedTextColor="@color/colorPrimary"
+            app:np_selectedTextSize="16sp"
+            app:np_textColor="@color/colorPrimaryVariant"
+            app:np_textSize="15sp"
+            app:np_width="70dp" />
 
-    </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rg_activity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="7dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rg_gender">
 
-    <Button
-        android:id="@+id/btn_add_daily_schedule"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="40dp"
-        android:text="@string/add_plan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day" />
+            <RadioButton
+                android:id="@+id/light_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/lightly_activity" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <RadioButton
+                android:id="@+id/moderate_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/moderate_activity" />
+
+            <RadioButton
+                android:id="@+id/heavy_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/heavy_activity" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_add_daily_schedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="40dp"
+            android:text="@string/add_plan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

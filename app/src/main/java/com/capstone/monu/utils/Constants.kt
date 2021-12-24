@@ -8,4 +8,3 @@ const val API_KEY = BuildConfig.API_KEY
 const val TYPE_REQUEST = "public"
 const val RANDOM_ING = "Egg"
 const val FOOD_ID = "food_id"
-const val TAG_DAILY = "tag_daily"
